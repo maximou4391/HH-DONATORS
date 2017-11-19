@@ -4,6 +4,8 @@ import * as JSZip from 'jszip';
 import {saveAs} from 'file-saver';
 import {ResponseContentType} from '@angular/http';
 import {HttpParams} from '@angular/common/http/src/params';
+import 'rxjs/add/observable/zip';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -19,25 +21,39 @@ export class AppComponent {
   downloadAll() {
     const url = 'http://www.helpinghands-sophia.org/PDFBUILDER/example.php?name=je%'
       + '20viens&address=de%20comprendre&city=ton%20petit&phone=tour%20de%passe%20passe';
+
+    const url2 = 'http://www.helpinghands-sophia.org/PDFBUILDER/example.php?name=toto'
+      + '&address=youhou&city=antibes&phone=0687982591';
     // Make the HTTP request:
 
-    // const zip = new JSZip();
-    // zip.file(url);
-    // zip.generateAsync({type: 'blob'})
-    //   .then(function (content) {
-    //     // see FileSaver.js
-    //     saveAs(content, 'example.zip');
-    //   });
-
-    console.log('toto');
+    const zipp = new JSZip();
 
     const headers = new HttpHeaders().set('Content-Type', 'application/pdf');
 
-    this.http.get(url, {headers, responseType: 'arraybuffer'}).subscribe(response => {
-        console.log('tutu', response);
-        const blob = new Blob([response], {type: 'application/pdf'});
-        saveAs(blob, 'download.pdf');
+    const promise1: Observable<ArrayBuffer>
+      = this.http.get(url, {headers, responseType: 'arraybuffer'});
+
+    const promise2: Observable<ArrayBuffer>
+      = this.http.get(url2, {headers, responseType: 'arraybuffer'});
+
+    const example = Observable
+      .zip(
+        promise1,
+        promise2
+      );
+
+    example.subscribe(responses => {
+      console.log('responses', responses);
+      for (let i = 0; i < responses.length; i++) {
+        const blob = new Blob([responses[i]], {type: 'application/pdf'});
+        // saveAs(blob, 'tt.pdf');
+        zipp.file('tt' + i + '.pdf', blob);
       }
-    );
+      zipp.generateAsync({type: 'blob'})
+        .then(function (content) {
+          // see FileSaver.js
+          saveAs(content, 'ettt.zip');
+        });
+    })
   }
 }
