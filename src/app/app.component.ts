@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as JSZip from 'jszip';
 import {saveAs} from 'file-saver';
-import {ResponseContentType} from '@angular/http';
-import {HttpParams} from '@angular/common/http/src/params';
 import 'rxjs/add/observable/zip';
 import {Observable} from 'rxjs/Observable';
 
