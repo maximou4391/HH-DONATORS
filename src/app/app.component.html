@@ -33,3 +33,9 @@
   <!--<mat-chip class="mat-h2" color="accent" selected="true">Accent fish</mat-chip>-->
 <!--</mat-chip-list>-->
 <button (click)="downloadAll()">download</button>
+
+<ul>
+  <li *ngFor="let item of totos | async">
+    {{ item.age }}
+  </li>
+</ul>

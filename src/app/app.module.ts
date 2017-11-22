@@ -12,6 +12,7 @@ import {
 import { DonatorComponent } from './donator/donator.component';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
+import {AngularFirestore, AngularFirestoreModule} from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {environment} from '../environments/environment';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     HttpClientModule,
     MatToolbarModule,
     MatMenuModule,

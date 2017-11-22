@@ -4,6 +4,7 @@ import * as JSZip from 'jszip';
 import {saveAs} from 'file-saver';
 import 'rxjs/add/observable/zip';
 import {Observable} from 'rxjs/Observable';
+import {AngularFirestore} from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,9 @@ import {Observable} from 'rxjs/Observable';
 })
 export class AppComponent {
   title = 'app';
-
-  constructor(private http: HttpClient) {
+  totos: Observable < any[] >;
+  constructor(private http: HttpClient, db: AngularFirestore) {
+    this.totos = db.collection('totos').valueChanges();
   }
 
   downloadAll() {
