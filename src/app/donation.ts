@@ -1,4 +1,6 @@
-export interface Donation {
-  amount: number;
-  date: String;
+import {Idonation} from './idonation';
+
+export class Donation {
+
+
 }

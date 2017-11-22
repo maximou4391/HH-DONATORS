@@ -10,6 +10,8 @@ import {
 } from '@angular/material';
  import {HttpClientModule} from '@angular/common/http';
 import { DonatorComponent } from './donator/donator.component';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { DonatorComponent } from './donator/donator.component';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule,
     MatToolbarModule,
     MatMenuModule,
