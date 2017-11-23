@@ -5,6 +5,9 @@ import {saveAs} from 'file-saver';
 import 'rxjs/add/observable/zip';
 import {Observable} from 'rxjs/Observable';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {AddDonatorDialogComponent} from './add-donator-dialog/add-donator-dialog.component';
+import {MatDialog} from '@angular/material';
+import {Donator} from './donator';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +16,11 @@ import {AngularFirestore} from 'angularfire2/firestore';
 })
 export class AppComponent {
   title = 'app';
-  totos: Observable < any[] >;
-  constructor(private http: HttpClient, db: AngularFirestore) {
+  totos: Observable<any[]>;
+
+  db: AngularFirestore;
+
+  constructor(private http: HttpClient, db: AngularFirestore, public dialog: MatDialog) {
     this.totos = db.collection('totos').valueChanges();
   }
 
@@ -56,4 +62,19 @@ export class AppComponent {
         });
     })
   }
+
+  addDonators() {
+    let newDonator: Donator = new Donator(this.db);
+
+    let dialogRef = this.dialog.open(AddDonatorDialogComponent, {
+      width: '250px',
+      data: {newDonator: newDonator}
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.animal = result;
+    // });
+  }
+}
 }

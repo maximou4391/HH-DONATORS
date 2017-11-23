@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Donator} from '../donator';
 
 @Component({
   selector: 'app-donator',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./donator.component.css']
 })
 export class DonatorComponent implements OnInit {
+
+  @Input() donator: Donator;
 
   constructor() { }
 
