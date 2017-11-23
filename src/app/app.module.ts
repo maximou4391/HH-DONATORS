@@ -4,16 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule,
-  MatCardMdImage, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatMenuModule, MatSidenavModule,
-  MatToolbarModule
+  MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule, MatDialogModule, MatIconModule, MatMenuModule, MatSidenavModule,
+  MatToolbarModule, MatInputModule
 } from '@angular/material';
  import {HttpClientModule} from '@angular/common/http';
 import { DonatorComponent } from './donator/donator.component';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
-import {AngularFirestore, AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
 import { AddDonatorDialogComponent } from './add-donator-dialog/add-donator-dialog.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,10 @@ import { AddDonatorDialogComponent } from './add-donator-dialog/add-donator-dial
     MatDialogModule,
     HttpClientModule,
     MatToolbarModule,
+    MatInputModule,
+    FormsModule,
     MatMenuModule,
+    MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
     MatCardModule,

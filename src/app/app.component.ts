@@ -64,17 +64,14 @@ export class AppComponent {
   }
 
   addDonators() {
-    let newDonator: Donator = new Donator(this.db);
-
-    let dialogRef = this.dialog.open(AddDonatorDialogComponent, {
-      width: '250px',
+    const newDonator: Donator = new Donator(this.db);
+    const dialogRef = this.dialog.open(AddDonatorDialogComponent, {
+      // width: '250px',
       data: {newDonator: newDonator}
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result.newDonator.firstName);
+    });
   }
-}
 }

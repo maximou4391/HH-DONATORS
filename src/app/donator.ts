@@ -1,7 +1,6 @@
-import {Idonator} from './idonator';
 import {AngularFirestore} from 'angularfire2/firestore';
 
-export class Donator /*implements Idonator*/ {
+export class Donator {
   firstName: string;
   familyName: string;
   town: string;

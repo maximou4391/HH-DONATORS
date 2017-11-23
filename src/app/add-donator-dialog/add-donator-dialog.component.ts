@@ -14,4 +14,8 @@ export class AddDonatorDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
+
 }

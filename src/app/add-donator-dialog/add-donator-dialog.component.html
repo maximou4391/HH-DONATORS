@@ -1,4 +1,24 @@
-<p>
-  add-donator-dialog works!
-  {{ data.donator | json }}
-</p>
+<!--<div class="add-donator-container">-->
+ <!---->
+<!--</div>-->
+<h1 mat-dialog-title>Add a new donator</h1>
+<div mat-dialog-content class="add-donator-container">
+  <mat-form-field
+    [floatPlaceholder]="true">
+    <input type="text" [(ngModel)]="data.newDonator.firstName" matInput placeholder="First Name" required>
+  </mat-form-field>
+
+  <mat-form-field
+    [floatPlaceholder]="true">
+    <input type="text" [(ngModel)]="data.newDonator.familyName" matInput placeholder="First Name" required>
+  </mat-form-field>
+
+  <mat-form-field
+    [floatPlaceholder]="true">
+    <input type="text" [(ngModel)]="data.newDonator.town" matInput placeholder="Town" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="data" tabindex="2">Save</button>
+</div>
