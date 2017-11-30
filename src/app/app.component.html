@@ -32,11 +32,14 @@
   <!--<mat-chip color="primary">Primary fish</mat-chip>-->
   <!--<mat-chip class="mat-h2" color="accent" selected="true">Accent fish</mat-chip>-->
 <!--</mat-chip-list>-->
-<button (click)="downloadAll()">download</button>
+<button (click)="downloadAll()">download all</button>
+
 <button mat-raised-button color="primary" (click)="addDonators()">Add donators</button>
 <ul>
-  <li *ngFor="let item of totos | async">
-    {{ item.age }}
-    {{ item | json }}
+  <li *ngFor="let donator of donators | async">
+    {{ donator.firstName }} {{donator.familyName}} ({{donator.town}})
+    {{ donator | json }}
+    <button (click)="deleteDonator(donator)">Delete</button>
+    <button (click)="modifyDonator(donator)">Modify</button>
   </li>
 </ul>

@@ -1,15 +1,9 @@
-import {AngularFirestore} from 'angularfire2/firestore';
+import {IDonator} from './donator.interface';
+import {GenericObject} from './generic-object';
 
-export class Donator {
-  firstName: string;
-  familyName: string;
-  town: string;
-
-  constructor(db: AngularFirestore) {
-  }
-
-  save() {
-
-  }
+export class Donator extends GenericObject implements IDonator {
+  firstName = '';
+  familyName = '';
+  town = '';
 
 }

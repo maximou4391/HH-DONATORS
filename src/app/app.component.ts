@@ -4,10 +4,11 @@ import * as JSZip from 'jszip';
 import {saveAs} from 'file-saver';
 import 'rxjs/add/observable/zip';
 import {Observable} from 'rxjs/Observable';
-import {AngularFirestore} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {AddDonatorDialogComponent} from './add-donator-dialog/add-donator-dialog.component';
 import {MatDialog} from '@angular/material';
 import {Donator} from './donator';
+import {IDonator} from './donator.interface';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +16,21 @@ import {Donator} from './donator';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  totos: Observable<any[]>;
+  private donatorsCollection: AngularFirestoreCollection<IDonator>;
+  donators: Observable<IDonator[]>;
 
-  db: AngularFirestore;
+  constructor(private readonly afs: AngularFirestore,
+              private http: HttpClient,
+              public dialog: MatDialog) {
+    this.donatorsCollection = afs.collection<IDonator>('donators');
+    // this.donators = this.donatorsCollection.valueChanges();
 
-  constructor(private http: HttpClient, db: AngularFirestore, public dialog: MatDialog) {
-    this.totos = db.collection('totos').valueChanges();
+    // This is used to add id when retrieving the data
+    this.donators = this.donatorsCollection.snapshotChanges()
+      .map(actions => {
+        return actions.map(action => (<IDonator> {id: action.payload.doc.id, ...action.payload.doc.data()}));
+      });
+
   }
 
   downloadAll() {
@@ -63,15 +72,54 @@ export class AppComponent {
     })
   }
 
+  /**
+   * Open the dialog to add a donator
+   */
   addDonators() {
-    const newDonator: Donator = new Donator(this.db);
+    const newDonator = new Donator();
     const dialogRef = this.dialog.open(AddDonatorDialogComponent, {
-      // width: '250px',
-      data: {newDonator: newDonator}
+      data: newDonator,
+    });
+
+    dialogRef.afterClosed().subscribe(donator => {
+      // Persist a document id
+      console.log(donator);
+      this.donatorsCollection.add(donator.toObject());
+    });
+  }
+
+  updateDonator(donatorToUpdate: IDonator) {
+    const donatorToUpdateDocumentObject: AngularFirestoreDocument<IDonator>
+      = this.afs.doc<IDonator>('donators/' + donatorToUpdate.id);
+
+    const firstName: string = donatorToUpdate.firstName;
+    const familyName: string = donatorToUpdate.familyName;
+    const town: string = '';
+    const dialogRef = this.dialog.open(AddDonatorDialogComponent, {
+      data: {
+        firstName: firstName,
+        familyName: familyName,
+        town: town
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result.newDonator.firstName);
+      // Persist a document id
+      const newDonator: IDonator = {
+        firstName: result.firstName,
+        familyName: result.familyName,
+        town: result.town
+      };
+      this.donatorsCollection.add(newDonator);
     });
+
+
+    // donatorToUpdateDocumentObject.update()
+  }
+
+  deleteDonator(donatorToDelete: IDonator) {
+    const donatorToDeleteDocumentObject: AngularFirestoreDocument<IDonator>
+      = this.afs.doc<IDonator>('donators/' + donatorToDelete.id);
+    donatorToDeleteDocumentObject.delete();
   }
 }

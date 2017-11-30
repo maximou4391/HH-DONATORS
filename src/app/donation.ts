@@ -1,6 +1,5 @@
-import {Idonation} from './idonation';
-
-export class Donation {
-
-
+export interface Donation {
+  amount: number;
+  writtenAmount: string;
+  date: String;
 }

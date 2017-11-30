@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Donator} from '../donator';
+import {IDonator} from '../donator.interface';
 
 @Component({
   selector: 'app-donator',
@@ -8,7 +8,7 @@ import {Donator} from '../donator';
 })
 export class DonatorComponent implements OnInit {
 
-  @Input() donator: Donator;
+  @Input() donator: IDonator;
 
   constructor() { }
 
