@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddDonatorDialogComponent } from './add-donator-dialog.component';
+import { AddDonorDialogComponent } from './add-donor-dialog.component';
 
-describe('AddDonatorDialogComponent', () => {
-  let component: AddDonatorDialogComponent;
-  let fixture: ComponentFixture<AddDonatorDialogComponent>;
+describe('AddDonorDialogComponent', () => {
+  let component: AddDonorDialogComponent;
+  let fixture: ComponentFixture<AddDonorDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddDonatorDialogComponent ]
+      declarations: [ AddDonorDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddDonatorDialogComponent);
+    fixture = TestBed.createComponent(AddDonorDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

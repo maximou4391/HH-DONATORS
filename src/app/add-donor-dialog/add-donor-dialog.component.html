@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>Add a new donator</h1>
-<div mat-dialog-content class="add-donator-container">
+<h1 mat-dialog-title>Add a new donor</h1>
+<div mat-dialog-content class="add-donor-container">
   <mat-form-field
     [floatPlaceholder]="true">
     <input type="text" [(ngModel)]="data.firstName" matInput placeholder="First Name" required>
@@ -16,6 +16,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
-  <button mat-button color="primary" [mat-dialog-close]="data" tabindex="2">Save</button>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="data">Save</button>
 </div>

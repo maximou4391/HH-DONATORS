@@ -1,8 +1,8 @@
-.add-donator-container {
+.add-donor-container {
   display: flex;
   flex-direction: column;
 }
 
-.add-donator-container > * {
+.add-donor-container > * {
   width: 100%;
 }

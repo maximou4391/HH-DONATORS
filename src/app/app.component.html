@@ -34,16 +34,16 @@
 <!--</mat-chip-list>-->
 <button (click)="downloadAll()">download all</button>
 
-<button mat-raised-button color="primary" (click)="addDonators()">Add donators</button>
+<button mat-raised-button color="primary" (click)="addDonor()">Add donor</button>
 <ul>
-  <div *ngFor="let donator of donators | async">
+  <div *ngFor="let donor of donors | async">
       <li>
-        {{ donator.firstName }} {{donator.familyName}} ({{donator.town}})
-        {{ donator | json }}
-        <button (click)="deleteDonator(donator)">Delete</button>
-        <button (click)="updateDonator(donator)">Modify</button>
-        <button (click)="addDonation(donator)">Add a donation</button>
-        <!--<div *ngFor="let donation of donator.donations">-->
+        {{ donor.firstName }} {{donor.familyName}} ({{donor.town}})
+        {{ donor | json }}
+        <button (click)="deleteDonor(donor)">Delete</button>
+        <button (click)="updateDonor(donor)">Modify</button>
+        <button (click)="addDonation(donor)">Add a donation</button>
+        <!--<div *ngFor="let donation of donor.donations">-->
           <!--{{donation.amount}}-->
         <!--</div>-->
       </li>

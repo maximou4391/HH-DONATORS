@@ -8,19 +8,19 @@ import {
   MatToolbarModule, MatInputModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule
 } from '@angular/material';
  import {HttpClientModule} from '@angular/common/http';
-import { DonatorComponent } from './donator/donator.component';
+import { DonorComponent } from './donor/donor.component';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-import { AddDonatorDialogComponent } from './add-donator-dialog/add-donator-dialog.component';
+import { AddDonorDialogComponent } from './add-donor-dialog/add-donor-dialog.component';
 import {FormsModule} from '@angular/forms';
 import { AddDonationDialogComponent } from './add-donation-dialog/add-donation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DonatorComponent,
-    AddDonatorDialogComponent,
+    DonorComponent,
+    AddDonorDialogComponent,
     AddDonationDialogComponent
   ],
   imports: [
@@ -46,6 +46,6 @@ import { AddDonationDialogComponent } from './add-donation-dialog/add-donation-d
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddDonatorDialogComponent, AddDonationDialogComponent]
+  entryComponents: [AddDonorDialogComponent, AddDonationDialogComponent]
 })
 export class AppModule { }
