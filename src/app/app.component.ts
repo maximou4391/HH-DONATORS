@@ -89,43 +89,4 @@ export class AppComponent {
     });
   }
 
-  /**
-   * Update existing donor
-   * @param {IDonor} donorToUpdate
-   */
-  updateDonor(donorToUpdate: IDonor) {
-    const donorToUpdateDocumentObject: AngularFirestoreDocument<IDonor>
-      = this.afs.doc<IDonor>('donors/' + donorToUpdate.id);
-    const dialogRef = this.dialog.open(AddDonorDialogComponent, {
-      data: donorToUpdate,
-    });
-    dialogRef.afterClosed().subscribe(donor => {
-      donorToUpdateDocumentObject.update(donor);
-    });
-  }
-
-  /**
-   * Delete a donor thanks to its id
-   * @param {IDonor} donorToDelete
-   */
-  deleteDonor(donorToDelete: IDonor) {
-    const donorToDeleteDocumentObject: AngularFirestoreDocument<IDonor>
-      = this.afs.doc<IDonor>('donors/' + donorToDelete.id);
-    donorToDeleteDocumentObject.delete();
-  }
-
-  /**
-   * Add a donation for donor
-   * @param {IDonor} donor
-   */
-  addDonation(donor: IDonor) {
-    const newDonation = new Donation();
-    const dialogRef = this.dialog.open(AddDonationDialogComponent, {
-      data: {donor: donor, newDonation: newDonation},
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('result', result);
-      // result.donor.donationsCollection.add(result.newDonation.toObject());
-    });
-  }
 }

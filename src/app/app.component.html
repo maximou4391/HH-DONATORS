@@ -38,14 +38,10 @@
 <ul>
   <div *ngFor="let donor of donors | async">
       <li>
-        {{ donor.firstName }} {{donor.familyName}} ({{donor.town}})
-        {{ donor | json }}
-        <button (click)="deleteDonor(donor)">Delete</button>
-        <button (click)="updateDonor(donor)">Modify</button>
-        <button (click)="addDonation(donor)">Add a donation</button>
-        <!--<div *ngFor="let donation of donor.donations">-->
-          <!--{{donation.amount}}-->
-        <!--</div>-->
+        <app-donor [donor]="donor"></app-donor>
+        <!--{{ donor.firstName }} {{donor.familyName}} ({{donor.town}})-->
+        <!--{{ donor | json }}-->
+
       </li>
     <hr>
   </div>

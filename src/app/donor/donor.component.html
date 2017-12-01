@@ -1,3 +1,11 @@
 <p>
-  I'm donator: {{ donator.firstName }} {{ donator.familyName }}
+  I'm donor: {{ donor.firstName }} {{ donor.familyName }} from {{ donor.town }}
 </p>
+<ul>
+  <li *ngFor="let donation of donations | async">
+   <app-donation [donation]="donation"></app-donation>
+  </li>
+</ul>
+<button (click)="deleteDonor(donor)">Delete</button>
+<button (click)="updateDonor(donor)">Modify</button>
+<button (click)="addDonation(donor)">Add a donation</button>

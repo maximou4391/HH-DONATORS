@@ -15,13 +15,15 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import { AddDonorDialogComponent } from './add-donor-dialog/add-donor-dialog.component';
 import {FormsModule} from '@angular/forms';
 import { AddDonationDialogComponent } from './add-donation-dialog/add-donation-dialog.component';
+import { DonationComponent } from './donation/donation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DonorComponent,
     AddDonorDialogComponent,
-    AddDonationDialogComponent
+    AddDonationDialogComponent,
+    DonationComponent
   ],
   imports: [
     BrowserModule,
