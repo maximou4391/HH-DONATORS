@@ -1,0 +1,8 @@
+.add-donation-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-donation-container > * {
+  width: 100%;
+}

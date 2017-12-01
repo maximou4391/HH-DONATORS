@@ -9,6 +9,8 @@ import {AddDonatorDialogComponent} from './add-donator-dialog/add-donator-dialog
 import {MatDialog} from '@angular/material';
 import {Donator} from './donator';
 import {IDonator} from './donator.interface';
+import {Donation} from './donation';
+import {AddDonationDialogComponent} from './add-donation-dialog/add-donation-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -80,46 +82,44 @@ export class AppComponent {
     const dialogRef = this.dialog.open(AddDonatorDialogComponent, {
       data: newDonator,
     });
-
     dialogRef.afterClosed().subscribe(donator => {
-      // Persist a document id
-      console.log(donator);
       this.donatorsCollection.add(donator.toObject());
     });
   }
 
+  /**
+   * Update existing donator
+   * @param {IDonator} donatorToUpdate
+   */
   updateDonator(donatorToUpdate: IDonator) {
     const donatorToUpdateDocumentObject: AngularFirestoreDocument<IDonator>
       = this.afs.doc<IDonator>('donators/' + donatorToUpdate.id);
-
-    const firstName: string = donatorToUpdate.firstName;
-    const familyName: string = donatorToUpdate.familyName;
-    const town: string = '';
     const dialogRef = this.dialog.open(AddDonatorDialogComponent, {
-      data: {
-        firstName: firstName,
-        familyName: familyName,
-        town: town
-      },
+      data: donatorToUpdate,
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // Persist a document id
-      const newDonator: IDonator = {
-        firstName: result.firstName,
-        familyName: result.familyName,
-        town: result.town
-      };
-      this.donatorsCollection.add(newDonator);
+    dialogRef.afterClosed().subscribe(donator => {
+      donatorToUpdateDocumentObject.update(donator);
     });
-
-
-    // donatorToUpdateDocumentObject.update()
   }
 
+  /**
+   * Delete a donator thanks to its id
+   * @param {IDonator} donatorToDelete
+   */
   deleteDonator(donatorToDelete: IDonator) {
     const donatorToDeleteDocumentObject: AngularFirestoreDocument<IDonator>
       = this.afs.doc<IDonator>('donators/' + donatorToDelete.id);
     donatorToDeleteDocumentObject.delete();
+  }
+
+  addDonation(donator: IDonator) {
+    const newDonation = new Donation();
+    const dialogRef = this.dialog.open(AddDonationDialogComponent, {
+      data: {donator: donator, newDonation: newDonation},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('result', result);
+      result.donator.donationsCollection.add(result.newDonation.toObject());
+    });
   }
 }

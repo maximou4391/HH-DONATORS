@@ -1,5 +1,7 @@
-export interface Donation {
+import {GenericObject} from './generic-object';
+import {IDonation} from './donation.interface';
+
+export class Donation extends GenericObject implements IDonation {
   amount: number;
-  writtenAmount: string;
-  date: String;
+  date: Date = new Date();
 }

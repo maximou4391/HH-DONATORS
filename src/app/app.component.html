@@ -36,10 +36,17 @@
 
 <button mat-raised-button color="primary" (click)="addDonators()">Add donators</button>
 <ul>
-  <li *ngFor="let donator of donators | async">
-    {{ donator.firstName }} {{donator.familyName}} ({{donator.town}})
-    {{ donator | json }}
-    <button (click)="deleteDonator(donator)">Delete</button>
-    <button (click)="modifyDonator(donator)">Modify</button>
-  </li>
+  <div *ngFor="let donator of donators | async">
+      <li>
+        {{ donator.firstName }} {{donator.familyName}} ({{donator.town}})
+        {{ donator | json }}
+        <button (click)="deleteDonator(donator)">Delete</button>
+        <button (click)="updateDonator(donator)">Modify</button>
+        <button (click)="addDonation(donator)">Add a donation</button>
+        <!--<div *ngFor="let donation of donator.donations">-->
+          <!--{{donation.amount}}-->
+        <!--</div>-->
+      </li>
+    <hr>
+  </div>
 </ul>
