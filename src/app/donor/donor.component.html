@@ -1,11 +1,21 @@
-<p>
-  I'm donor: {{ donor.firstName }} {{ donor.familyName }} from {{ donor.town }}
-</p>
-<ul>
-  <li *ngFor="let donation of donations | async">
-   <app-donation [donation]="donation"></app-donation>
-  </li>
-</ul>
-<button (click)="deleteDonor(donor)">Delete</button>
-<button (click)="updateDonor(donor)">Modify</button>
-<button (click)="addDonation(donor)">Add a donation</button>
+<mat-card class="donor-card">
+  <mat-card-header>
+    <mat-card-title class="family-name">{{ donor.familyName }}</mat-card-title>
+    <mat-card-subtitle>{{ donor.firstName }}</mat-card-subtitle>
+  </mat-card-header>
+<!--  <mat-card-content *ngIf="false">
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>-->
+  <!--<mat-card-actions>-->
+    <!--delete-->
+    <!--<button mat-button (click)="deleteDonor(donor)">Delete</button>-->
+    <!--settings-->
+    <!--<button mat-button (click)="updateDonor(donor)">Modify</button>-->
+    <!--attach_money-->
+    <!--<button mat-button (click)="addDonation(donor)">Add a donation</button>-->
+ <!-- </mat-card-actions>-->
+</mat-card>

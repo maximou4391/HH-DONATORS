@@ -1,20 +1,29 @@
 <mat-toolbar color="primary">
-
+  <mat-toolbar-row>
     <button mat-icon-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
     </button>
+    <span class="toolbar-spacer"></span>
+    <!--<button aria-label="Add donor" (click)="addDonor()">-->
+    <!--<mat-icon class="add-donor-icon">person_add</mat-icon>-->
+    <!--</button>-->
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<!--<mat-sidenav-container class="example-container">-->
-  <!--<mat-sidenav #sidenav class="example-sidenav">-->
-    <!--Jolly good!-->
-  <!--</mat-sidenav>-->
+<button mat-fab class="add-donor-button">
+  <mat-icon (click)="addDonor()" aria-label="Add a donor">person_add</mat-icon>
+</button>
 
-  <!--<div class="example-sidenav-content">-->
-    <!--<button type="button" mat-button (click)="sidenav.open()">-->
-      <!--Open sidenav-->
-    <!--</button>-->
-  <!--</div>-->
+<!--<mat-sidenav-container class="example-container">-->
+<!--<mat-sidenav #sidenav class="example-sidenav">-->
+<!--Jolly good!-->
+<!--</mat-sidenav>-->
+
+<!--<div class="example-sidenav-content">-->
+<!--<button type="button" mat-button (click)="sidenav.open()">-->
+<!--Open sidenav-->
+<!--</button>-->
+<!--</div>-->
 
 <!--</mat-sidenav-container>-->
 
@@ -27,22 +36,16 @@
 <!--<mat-card>Simple card 3</mat-card>-->
 
 <!--<mat-chip-list>-->
-  <!--<mat-chip>One fish</mat-chip>-->
-  <!--<mat-chip>Two fish</mat-chip>-->
-  <!--<mat-chip color="primary">Primary fish</mat-chip>-->
-  <!--<mat-chip class="mat-h2" color="accent" selected="true">Accent fish</mat-chip>-->
+<!--<mat-chip>One fish</mat-chip>-->
+<!--<mat-chip>Two fish</mat-chip>-->
+<!--<mat-chip color="primary">Primary fish</mat-chip>-->
+<!--<mat-chip class="mat-h2" color="accent" selected="true">Accent fish</mat-chip>-->
 <!--</mat-chip-list>-->
-<button (click)="downloadAll()">download all</button>
 
-<button mat-raised-button color="primary" (click)="addDonor()">Add donor</button>
-<ul>
-  <div *ngFor="let donor of donors | async">
-      <li>
-        <app-donor [donor]="donor"></app-donor>
-        <!--{{ donor.firstName }} {{donor.familyName}} ({{donor.town}})-->
-        <!--{{ donor | json }}-->
 
-      </li>
-    <hr>
-  </div>
-</ul>
+<!--<button (click)="downloadAll()">download all</button>-->
+<div class="donor-cards-container">
+  <app-donor *ngFor="let donor of donors | async" [donor]="donor"></app-donor>
+  <!--{{ donor.firstName }} {{donor.familyName}} ({{donor.town}})-->
+  <!--{{ donor | json }}-->
+</div>
