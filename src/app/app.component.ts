@@ -11,6 +11,7 @@ import {Donor} from './donor';
 import {IDonor} from './donor.interface';
 import {Donation} from './donation';
 import {AddDonationDialogComponent} from './add-donation-dialog/add-donation-dialog.component';
+import {Router, ROUTER_CONFIGURATION} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,20 +19,14 @@ import {AddDonationDialogComponent} from './add-donation-dialog/add-donation-dia
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   private donorsCollection: AngularFirestoreCollection<IDonor>;
-  donors: Observable<IDonor[]>;
 
   constructor(private readonly afs: AngularFirestore,
               private http: HttpClient,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private router: Router) {
     this.donorsCollection = afs.collection<IDonor>('donors');
-    // this.donors = this.donorsCollection.valueChanges();
-
-    // This is used to add id when retrieving the data
-    this.donors = this.donorsCollection.snapshotChanges()
-      .map(actions => {
-        return actions.map(action => (<IDonor> {id: action.payload.doc.id, ...action.payload.doc.data()}));
-      });
   }
 
   /**

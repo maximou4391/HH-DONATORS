@@ -1,12 +1,34 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="sidenav.open()">
+    <button *ngIf="router.url === '/'" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
+    <button *ngIf="router.url === '/events-settings'" mat-icon-button routerLink="/">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <!--*ngIf="router.url === '/some/route'"-->
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/events-settings">
+        <mat-icon>settings</mat-icon>
+        <span>‎Events settings</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>file_download</mat-icon>
+        <span>Download all tax receipts</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>save</mat-icon>
+        <span>Backup database</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>import_export</mat-icon>
+        <span>Import donors</span>
+      </button>
+    </mat-menu>
     <span class="toolbar-spacer"></span>
-    <!--<button aria-label="Add donor" (click)="addDonor()">-->
-    <!--<mat-icon class="add-donor-icon">person_add</mat-icon>-->
-    <!--</button>-->
+    <button mat-icon-button aria-label="Add donor" (click)="noop()">
+      <mat-icon class="add-donor-icon">account_circle</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -44,8 +66,8 @@
 
 
 <!--<button (click)="downloadAll()">download all</button>-->
-<div class="donor-cards-container">
-  <app-donor *ngFor="let donor of donors | async" [donor]="donor"></app-donor>
-  <!--{{ donor.firstName }} {{donor.familyName}} ({{donor.town}})-->
-  <!--{{ donor | json }}-->
+<!--ng g pipe my-new-pipe-->
+
+<div class="app-container">
+  <router-outlet></router-outlet>
 </div>

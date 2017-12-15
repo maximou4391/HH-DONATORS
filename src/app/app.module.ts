@@ -16,6 +16,10 @@ import { AddDonorDialogComponent } from './add-donor-dialog/add-donor-dialog.com
 import {FormsModule} from '@angular/forms';
 import { AddDonationDialogComponent } from './add-donation-dialog/add-donation-dialog.component';
 import { DonationComponent } from './donation/donation.component';
+import { DonatorFilterPipe } from './donator-filter.pipe';
+import { EventsSettingsComponent } from './events-settings/events-settings.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DonorsListComponent } from './donors-list/donors-list.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +27,14 @@ import { DonationComponent } from './donation/donation.component';
     DonorComponent,
     AddDonorDialogComponent,
     AddDonationDialogComponent,
-    DonationComponent
+    DonationComponent,
+    DonatorFilterPipe,
+    EventsSettingsComponent,
+    DonorsListComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
@@ -44,7 +52,8 @@ import { DonationComponent } from './donation/donation.component';
     MatCardModule,
     MatChipsModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

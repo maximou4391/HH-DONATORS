@@ -1,0 +1,9 @@
+<div @fadeInAnimation>
+  <mat-form-field class="search-donor-input-container">
+    <input matInput type="text" placeholder="Search donor" [(ngModel)]="filterInputText"/>
+    <button mat-button *ngIf="filterInputText" matSuffix mat-icon-button aria-label="Clear" (click)="filterInputText=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <app-donor *ngFor="let donor of donors | async | donatorFilter:filterInputText" [donor]="donor"></app-donor>
+</div>
